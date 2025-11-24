@@ -1,3 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h> 
+
+struct Territorio {
+    char nome[30];   // Nome do território
+    char cor[10];    // Cor do exército que domina o território
+    int tropas;      // Quantidade de tropas presentes
+};
+
+void limparBufferEntrada(){
+    int c;
+    while((c = getchar()) != '\n' && c != EOF);
+}
+
+int main() {
+    // --- Declaração do vetor de structs ---
+    // Vetor com capacidade para armazenar 5 territórios.
+    struct Territorio Territ[5];
+
+    printf("Vamos Cadastrar os 5 territorios iniciais do nosso mundo!\n");
+
+    // --- Entrada dos dados ---
+    // Laço for para cadastrar os 5 territórios.
+    for (int i = 0; i < 5; i++) {
+        printf("\n--> Cadastrando Territorio %d:\n", i + 1);
+        // Leitura do nome do território
+        printf("Nome do território: ");
+        scanf("%29s", Territ[i].nome); // lê no máximo 29 caracteres + '\0'
+
+        // Leitura da cor do exército
+        printf("Cor do exército (ex: Azul, Verde...): ");
+        scanf("%s", Territ[i].cor); 
+
+        // Leitura da quantidade de tropas
+        printf("Número de tropas: ");
+        scanf("%d", &Territ[i].tropas);
+    }
+
+    // --- Exibição dos dados ---
+    // Após o cadastro, percorremos o vetor e mostramos os dados.
+    printf("\n=====================================\n");
+    printf("   LISTA DE TERRITÓRIOS CADASTRADOS\n");
+    printf("=====================================\n");
+
+    for (int i = 0; i < 5; i++) {
+        printf("\nTerritório %d:\n", i + 1);
+        printf(" - Nome: %s\n", Territ[i].nome);
+        printf(" - Cor do Exército: %s\n", Territ[i].cor);
+        printf(" - Tropas: %d\n", Territ[i].tropas);
+        printf("-------------------------------------\n");
+    }
+
+    return 0;
+}
+
+
 // ============================================================================
 //         PROJETO WAR ESTRUTURADO - DESAFIO DE CÓDIGO
 // ============================================================================
@@ -30,8 +87,7 @@
 // Função utilitária:
 
 // --- Função Principal (main) ---
-// Função principal que orquestra o fluxo do jogo, chamando as outras funções em ordem.
-int main() {
+// Função principal que orquestra o fluxo do jogo, chamando as outras funções em ordem.  
     // 1. Configuração Inicial (Setup):
     // - Define o locale para português.
     // - Inicializa a semente para geração de números aleatórios com base no tempo atual.
@@ -47,12 +103,9 @@ int main() {
     //   - Opção 2: Verifica se a condição de vitória foi alcançada e informa o jogador.
     //   - Opção 0: Encerra o jogo.
     // - Pausa a execução para que o jogador possa ler os resultados antes da próxima rodada.
-
+    
     // 3. Limpeza:
     // - Ao final do jogo, libera a memória alocada para o mapa para evitar vazamentos de memória.
-
-    return 0;
-}
 
 // --- Implementação das Funções ---
 
